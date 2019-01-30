@@ -1,12 +1,12 @@
 import React from 'react';
 
-const NeatGrid = props => {
+const NeatGrid = (props) => {
         return (
             <table>
                 <thead>
                    <TableRow>
                    {
-                       this.props.headerData.map((item)=>{
+                       props.headerData.map((item)=>{
                            return <TableHeader>{item}</TableHeader>
                        })
                    }
@@ -14,7 +14,7 @@ const NeatGrid = props => {
                 </thead>
                 <tbody>
                     {
-                        this.props.bodyData.map((list)=>{
+                        props.bodyData.map((list)=>{
                             return <TableRow>
                                 {
                                     list.map((item)=>{
