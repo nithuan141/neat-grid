@@ -27,7 +27,7 @@ class NeatGrid extends React.PureComponent {
         }
 
         return (
-            <div className = {this.props.cssClass} id = {this.props.gridId}>
+            <div className = {this.props.cssClass ? this.props.cssClass : 'grid'} id = {this.props.gridId}>
                             {paginationElement }
                 <table className = 'table-boarder'>
                     <thead>
@@ -58,8 +58,9 @@ class NeatGrid extends React.PureComponent {
     }
 
     onRowClick = (props)=>{
-        this.props.onClick(props);
+        this.props.onRowClick(props);
     }
+
     onNext = () =>{
         if(this.state.pageNo * this.props.dataPerPage < this.props.bodyData.length){
             this.setState({
@@ -115,11 +116,11 @@ const TableHeader = React.memo(function(props){
 });
 
 const Pager = React.memo(function(props) {
-    return <React.Fragment>
-            <button onClick = {()=>{props.onPrev()}} className={props.pagerClass?props.pagerClass:'button-next-prev'}>Prev</button>
-            <spa>{`Showing data ${props.fromData} to ${props.dataCount} of ${props.total}`} </spa>
-            <button onClick = {()=>{props.onNext()}} className={props.pagerClass?props.pagerClass:'button-next-prev'}>Next</button>
-    </React.Fragment>;
+    return <div className = 'pager'>
+                <button onClick = {()=>{props.onPrev()}} className={props.pagerClass?props.pagerClass:'button-next-prev'}>Prev</button>
+                <span>{`Showing data ${props.fromData} to ${props.dataCount} of ${props.total}`} </span>
+                <button onClick = {()=>{props.onNext()}} className={props.pagerClass?props.pagerClass:'button-next-prev'}>Next</button>
+            </div>;
 });
 
 /**
@@ -130,7 +131,7 @@ const getComponent = function(item){
         case "input":
             return <input type='text' className = {item.cssClass} value= {item.value} onChange = {item.onChange}/>;
         case "label":
-            return <lable className = {item.cssClass} > {item.value}</lable>;
+            return <label className = {item.cssClass} > {item.value}</label>;
         case "custom":
             return item.value
         default:

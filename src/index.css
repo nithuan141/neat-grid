@@ -40,3 +40,9 @@ body {
     margin: 4px 2px;
     border-radius: 6px;
   }
+  .grid{
+    align-content: flex-start;
+  }
+  .pager{
+    align-content: flex-start;
+  }
